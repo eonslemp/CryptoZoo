@@ -8,6 +8,7 @@ const Coins = (props) => {
   return (
     <div container='container'>
         <div>
+            <h1>Top 7 Cryptos by Market Capitalization</h1>
             <div className='heading'>
                 <p>Rank</p>
                 <p className='coin-name'>Coin</p>

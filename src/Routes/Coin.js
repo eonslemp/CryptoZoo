@@ -59,15 +59,15 @@ useEffect(() => {
   console.log(coin)
   console.log(graph.prices)
 
-const graphData = graph.prices.map((price) => {
-    const [timestamp, p] = price
-    const date = new Date(timestamp).toLocaleDateString('en-us')
-    return {
-        Date: date,
-        Price: p
-    }
-})
-console.log(graphData)
+// const graphData = graph.prices.map((price) => {
+//     const [timestamp, p] = price
+//     const date = new Date(timestamp).toLocaleDateString('en-us')
+//     return {
+//         Date: date,
+//         Price: p
+//     }
+// })
+// console.log(graphData)
 
   return (
     <div className='show'>
@@ -77,14 +77,14 @@ console.log(graphData)
         <div className='coin-display'>
             <h1 className='rank'>Rank:  {coin.market_cap_rank}</h1>
             {coin.image ? <img src={coin.image.small} alt=''/> : null}
-            <h2>{coin.name}</h2>
+            {/* <h1>{coin.name}</h1> */}
             <br />
-            <h2>{coin.symbol}</h2>
+            <h1>{coin.symbol}</h1>
             {coin.market_data ? <h1>${coin.market_data.current_price.usd.toLocaleString()}</h1> : null}
         
         </div>
         <h1>{coin.name} price for last 7 days</h1>
-        <div className='graph'>
+        {/* <div className='graph'>
         <LineChart
           width={500}
           height={300}
@@ -103,7 +103,9 @@ console.log(graphData)
           <Legend />
           <Line type="monotone" dataKey="Price" stroke="#f4f4ea" />
         </LineChart>
-        </div>
+        </div> */}
+
+        
         
     </div>
   )

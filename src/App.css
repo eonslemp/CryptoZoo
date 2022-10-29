@@ -1,5 +1,6 @@
 .navbar {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
@@ -31,7 +32,7 @@
     align-items: center;
     background-color: rgb(27, 94, 28);
     box-shadow: 0px 0px 12px rgb(130, 181, 135);
-    margin: 2rem 1rem;
+    margin: 1rem 1rem;
     padding: .7rem 1rem;
 }
 
@@ -58,7 +59,7 @@ img {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(27, 94, 28);
+    background-color: rgb(11, 59, 12);
     box-shadow: 0px 0px 12px rgb(182, 219, 186);
     margin: 2rem 1rem;
     padding: .7rem 1rem;
@@ -72,6 +73,7 @@ img {
 }
 .graph > * {
     /* background-color: antiquewhite; */
+    background-color: rgb(27, 94, 28);
     max-width: 500px;
     display: flex;
     align-items: center;
@@ -82,3 +84,33 @@ img {
 LineChart {
     justify-content: center;
 } */
+.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(27, 94, 28);
+    box-shadow: 0px 0px 12px rgb(182, 219, 186);
+    margin: 2rem 1rem;
+    padding: .7rem 1rem;
+}
+
+.converter {
+    display: flex;
+    flex-direction: column;
+    max-width: 30rem;
+    /* justify-content: center;
+    align-content: center; */
+    align-items: center;
+    background-color: rgb(27, 94, 28);
+    box-shadow: 0px 0px 12px rgb(130, 181, 135);
+    margin: 2rem 1rem;
+    padding: .7rem 1rem;
+    font-weight: 700;
+    height: 250px
+}
+
+select {
+    margin-left: .5rem;
+    width: 4rem
+}

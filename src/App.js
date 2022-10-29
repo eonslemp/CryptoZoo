@@ -4,12 +4,13 @@ import Navbar from './components/Navbar'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 import Coin from './Routes/Coin'
+import Converter from './Routes/Converter';
 
 
 function App() {
   const [coins, setCoins ] = useState([])
 
-  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false`
+  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=7&page=1&sparkline=false`
 
   const getCoin = async () => {
     try{
@@ -33,6 +34,7 @@ function App() {
         <Route path='/coin' element={<Coin />}>
           <Route path=':coinid' element={<Coin />}/>
         </Route>
+        <Route path='/converter' element={<Converter />}/>
       </Routes>
       
 

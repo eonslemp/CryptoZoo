@@ -1,7 +1,5 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 
 }
 body {
@@ -14,6 +12,8 @@ body {
 
   background-color: rgb(86, 133, 86); ;
   color:rgb(195, 205, 211);
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -27,5 +27,5 @@ h1 {
   margin: 1rem;
 }
 a {
-  color:rgb(195, 205, 211);
+  color:rgb(200, 237, 177);
 }
