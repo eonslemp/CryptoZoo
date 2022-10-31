@@ -7,6 +7,8 @@ const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&orde
 const Converter = () => {
 
   const [list, setList ] = useState()
+  const [ fromCurrency, setFromCurrency ]  = useState()
+  const [ toCurrency, setToCurrency ]  = useState()
 
   
 
@@ -16,6 +18,8 @@ const Converter = () => {
       const data = await response.json()
       setList(data)
       console.log(list)
+      setFromCurrency(list[0].symbol)
+      setToCurrency(list[1].symbol)
     } catch(e) {
       console.log('no data')
       console.log(e)
@@ -23,10 +27,11 @@ const Converter = () => {
   }
 
 
-
   useEffect(() => {
     getList()
   },[])
+
+
 
 
 
@@ -39,7 +44,33 @@ const Converter = () => {
       }
     )
   })
-  console.log(options)
+ 
+
+  const symbols = options.map((item) => {
+      return (
+          item.symbol
+      )
+  })
+  const prices = options.map((item) => {
+    return (
+        item.price
+    )
+})
+
+const names = options.map((item) => {
+    return (
+        item.id
+    )
+})
+
+console.log(options)
+console.log(names)
+console.log(prices)
+console.log(symbols)
+console.log(toCurrency)
+console.log(fromCurrency)
+
+
 
   // <CrpytoInput options={options}/>
 
@@ -61,9 +92,22 @@ const Converter = () => {
 return (
   <div className='converter'>
     <h1>Convert</h1>
-    <CrpytoInput options={options}/>
+    <CrpytoInput 
+      symbols={symbols}
+      prices={prices}
+      names={names}
+      selectedCurrency={fromCurrency}
+      changeCurrency={event => setFromCurrency(event.target.value)}
+
+      />
       <h2>Is equal to:</h2>
-    <CrpytoInput options={options}/>
+    <CrpytoInput 
+      symbols={symbols} 
+      prices={prices} 
+      names={names}
+      selectedCurrency={toCurrency}
+      changeCurrency={event => setToCurrency(event.target.value)}
+      />
   </div>
 )
 }
