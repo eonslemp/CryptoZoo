@@ -78,7 +78,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: rgb(26, 20, 20);
 }
 /* 
 LineChart {

@@ -11,7 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-color: rgb(86, 133, 86); ;
-  color:rgb(195, 205, 211);
+  color:rgb(133, 179, 205);
   display: flex;
   justify-content: center;
 }
