@@ -12,5 +12,7 @@ As of this writing all intended functionality is not yet present.  The landing p
 The code in this project is adapted from several resources found on the web as well as code developed during the course of this curriculum module:
 
 [tutorial 1](https://www.youtube.com/watch?v=gxXw-M5lDOw)
-[tutorial 2](https://www.youtube.com/watch?v=0sY4fUi5dMM)
+[tutorial 2](https://www.youtube.com/results?search_query=recharts+tutorial)
 [tutorial 3](https://www.youtube.com/resultssearch_query=currency+converter+web+dev+simplified)
+
+
