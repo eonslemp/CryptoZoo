@@ -24,7 +24,7 @@ const Trending = (props) => {
         {trending.map(coins =>{
             return(
                 // <Link to={`/coin/${coins.id}`} element={<Coin />} key={coins.id}>
-                    <CoinItem coins={coins} />
+                    <CoinItem key={coins.id} coins={coins} />
                 // </Link>
             )
         })}

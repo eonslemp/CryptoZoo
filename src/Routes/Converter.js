@@ -12,6 +12,9 @@ const Converter = () => {
   const [ exchangeRate, setExchangeRate ] = useState()
   const [ amount, setAmount ] = useState()
   const [ fromCurrencyAmount, setFromCurrencyAmount ] = useState(true)
+  const [ names, setNames ] = useState([])
+  const [ prices, setPrices ] = useState([])
+  const [ symbols, setSymbols ] = useState([])
 
 
 
@@ -40,66 +43,67 @@ const Converter = () => {
   },[])
 
 
+  
+  useEffect(() => {
+    var options = list.map((item) => {
+      return (
+        {
+        symbol: item.symbol,
+        id: item.id,
+        price: item.current_price
+        }
+      )
+    })
+   
+  
+    var symbols = options.map((item) => {
+        return (
+            item.symbol
+        )
+    })
+    var prices = options.map((item) => {
+      return (
+          item.price
+      )
+  })
+  
+    var names = options.map((item) => {
+      return (
+          item.id
+      )
+  })
+  },[list])
+
+
+const fromAmount = amount
+const toAmount =  fromAmount*exchangeRate
+
+console.log(fromCurrency)
+console.log(toCurrency)
+console.log(exchangeRate)
+console.log(fromAmount)
+console.log(toAmount)
 
 
 
-  // const options = list.map((item) => {
-  //   return (
-  //     {
-  //     symbol: item.symbol,
-  //     id: item.id,
-  //     price: item.current_price
-  //     }
-  //   )
-  // })
- 
+useEffect(() => {
+  setExchangeRate(prices[symbols.indexOf(fromCurrency)]/prices[symbols.indexOf(toCurrency)])
 
-//   const symbols = options.map((item) => {
-//       return (
-//           item.symbol
-//       )
-//   })
-//   const prices = options.map((item) => {
-//     return (
-//         item.price
-//     )
-// })
+},[fromCurrency, toCurrency])
 
-// const names = options.map((item) => {
-//     return (
-//         item.id
-//     )
-// })
+console.log(prices[symbols.indexOf(fromCurrency)]/prices[symbols.indexOf(toCurrency)])
+console.log(exchangeRate)
 
-// const fromAmount = amount
-// const toAmount =  fromAmount*exchangeRate
+function handleFromAmountChange(event){
+  setAmount(event.target.value)
+  setFromCurrencyAmount(true)
 
-// console.log(fromCurrency)
-// console.log(toCurrency)
-// console.log(exchangeRate)
-// console.log(fromAmount)
-// console.log(toAmount)
+}
+function handleToAmountChange(event){
+  setAmount(event.target.value)
+  setFromCurrencyAmount(false)
 
-
-
-// useEffect(() => {
-//   setExchangeRate(prices[symbols.indexOf(fromCurrency)]/prices[symbols.indexOf(toCurrency)])
-
-// },[fromCurrency, toCurrency])
-
-// console.log(prices[symbols.indexOf(fromCurrency)]/prices[symbols.indexOf(toCurrency)])
-// console.log(exchangeRate)
-
-// function handleFromAmountChange(event){
-//   setAmount(event.target.value)
-//   setFromCurrencyAmount(true)
-
-// }
-// function handleToAmountChange(event){
-//   setAmount(event.target.value)
-//   setFromCurrencyAmount(false)
-
-// }
+}
 
 
   // <CrpytoInput options={options}/>

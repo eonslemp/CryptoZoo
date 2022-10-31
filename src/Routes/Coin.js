@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import '../App.css'
 import Graph from '../components/Graph'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const Coin = () => {
 
@@ -10,7 +10,8 @@ const params = useParams()
 
 const [ coin, setCoin ] = useState({})
 const [ graph, setGraph] = useState({})
-console.log(coin)
+const [ graphInfo, setGraphInfo] = useState([])
+// console.log(coin)
 
 const url = `https://api.coingecko.com/api/v3/coins/${params.coinid}`
 
@@ -31,7 +32,7 @@ const getCoin = async () => {
     const data = await response.json()
     console.log(data)
     setCoin(data)
-    console.log(coin, )
+    // console.log(coin, )
 } catch(e) {
     console.log('no data')
     console.log(e)
@@ -41,10 +42,21 @@ const histURL = `https://api.coingecko.com/api/v3/coins/${params.coinid}/market_
 
 const getData = async () => {
     try{
+        console.log('running')
         const response = await fetch(histURL)
         const histData = await response.json()
         setGraph(histData)
-        console.log(graph)
+        // console.log(graph)
+        const graphData = histData.prices.map((price) => {
+          const [timestamp, p] = price
+          const date = new Date(timestamp).toLocaleDateString('en-us')
+          return {
+              Date: date,
+              Price: p
+          }
+      })
+      setGraphInfo(graphData)
+      console.log(graphData)
 
     } catch(e) {
         console.log(e)
@@ -57,8 +69,8 @@ useEffect(() => {
     getData()
     getCoin()
   }, [])
-  console.log(coin)
-  console.log(graph.prices)
+  // console.log(coin)
+  // console.log(graph.prices)
 
 // const graphData = graph.prices.map((price) => {
 //     const [timestamp, p] = price
@@ -85,7 +97,7 @@ useEffect(() => {
         </div>
         <h1>{coin.name} price for last 7 days</h1>
         <div >
-          {/* <Graph data={graphData}/> */}
+          <Graph data={graphInfo}/>
         </div>
 
         

@@ -6,8 +6,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 const Graph = (props) => {
 
     const graphData  = props.data
-    console.log(graphData)
-    console.log(props)
+    // console.log(graphData)
+    // console.log(props)
 
   return (
     <div className='graph'>
