@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className='navbar'>
     <Link to='/'>
         <div >
-          <h1> CryptoZoo  </h1>
+          <h1> Top7 </h1>
         </div>
     </Link>
     <Link to="/converter">
@@ -16,6 +16,13 @@ const Navbar = () => {
         </div>
 
     </Link>
+    <Link to="/trending">
+        <div>
+          <h1>Trending</h1>
+        </div>
+
+    </Link>
+
     </div>
   )
 }

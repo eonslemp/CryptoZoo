@@ -60,15 +60,15 @@ useEffect(() => {
   console.log(coin)
   console.log(graph.prices)
 
-const graphData = graph.prices.map((price) => {
-    const [timestamp, p] = price
-    const date = new Date(timestamp).toLocaleDateString('en-us')
-    return {
-        Date: date,
-        Price: p
-    }
-})
-console.log(graphData)
+// const graphData = graph.prices.map((price) => {
+//     const [timestamp, p] = price
+//     const date = new Date(timestamp).toLocaleDateString('en-us')
+//     return {
+//         Date: date,
+//         Price: p
+//     }
+// })
+// console.log(graphData)
 
   return (
     <div className='show'>
@@ -78,7 +78,6 @@ console.log(graphData)
         <div className='coin-display'>
             <h1 className='rank'>Rank:  {coin.market_cap_rank}</h1>
             {coin.image ? <img src={coin.image.small} alt=''/> : null}
-            {/* <h1>{coin.name}</h1> */}
             <br />
             <h1>{coin.symbol}</h1>
             {coin.market_data ? <h1>${coin.market_data.current_price.usd.toLocaleString()}</h1> : null}
@@ -86,7 +85,7 @@ console.log(graphData)
         </div>
         <h1>{coin.name} price for last 7 days</h1>
         <div >
-          <Graph data={graphData}/>
+          {/* <Graph data={graphData}/> */}
         </div>
 
         
