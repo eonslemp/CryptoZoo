@@ -2,7 +2,7 @@ import React from 'react'
 import CoinItem from '../components/Coinitem'
 import '../App.css';
 import { Link } from 'react-router-dom'
-import Coin from '../Routes/Coin'
+import Coin from './Coin'
 
 const Trending = (props) => {
     const trending = props.trending

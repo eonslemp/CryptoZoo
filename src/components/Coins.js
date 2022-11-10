@@ -2,7 +2,7 @@ import React from 'react'
 import CoinItem from './Coinitem'
 import '../App.css';
 import { Link } from 'react-router-dom'
-import Coin from '../Routes/Coin'
+import Coin from '../Pages/Coin'
 
 const Coins = (props) => {
   return (

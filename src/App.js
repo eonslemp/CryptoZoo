@@ -1,14 +1,18 @@
 import React , { useState, useEffect } from 'react'
 import Coins from './components/Coins'
 import Navbar from './components/Navbar'
-import Trending from './Routes/Trending';
+import Trending from './Pages/Trending';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import Coin from './Routes/Coin'
-import Converter from './Routes/Converter';
+import Coin from './Pages/Coin'
+import Converter from './Pages/Converter';
+import Profile from './Pages/Profile'
+import Register from './Pages/Register'
+import Login from './Pages/Login';
 
 
 function App() {
+  const [user, setUser ] = useState(true)
   const [coins, setCoins ] = useState([])
   const [trending, setTrending] = useState([])
 
@@ -43,17 +47,38 @@ function App() {
   
   const trendingCoins = trending.coins
   console.log(trendingCoins)
-
-  return (
-    <div className="App">
-      <Navbar />
+  let homeRoutes;
+  if (user) {
+    homeRoutes = (
       <Routes>
+        <Route path='/' element={<Coins  coins={coins}/>}/>
+        <Route path='/coin/:coinid' element={<Coin />}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/converter' element={<Converter />}/>
+        <Route path='/trending' element={<Trending trending={trendingCoins}/>}/>
+      </Routes>
+    )
+  } else {
+    homeRoutes = (
+      <Routes>
+        <Route path="/" element={<Coins coins={coins}/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    )
+}
+  return (
+
+    <div className="App">
+      <Navbar user={user} setUser={setUser}/>
+        {homeRoutes}
+      {/* <Routes>
         <Route path='/' element={<Coins  coins={coins}/>}/>
         <Route path='/coin/:coinid' element={<Coin />}/>
         <Route path='/converter' element={<Converter />}/>
         <Route path='/trending' element={<Trending trending={trendingCoins}/>}/>
-        {/* <Route path='/trending/'/> */}
-      </Routes>
+        cd <Route path='/trending/'/>
+      </Routes> */}
       
 
     </div>
