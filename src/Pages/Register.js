@@ -18,10 +18,9 @@ function Register() {
         e.preventDefault()
         console.log(form)
         alert('Registered')
-        const response = await axios.get('http://localhost:9000/test')
-        console.log('res 1:', response)
-        const response2 = await axios.post('http://localhost:9000/test2', form)
-        console.log('res 2: ', response2)
+
+        const response = await axios.post('http://localhost:9000/register', form)
+        console.log(response)
 
     }
 

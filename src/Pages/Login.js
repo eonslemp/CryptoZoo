@@ -27,6 +27,7 @@ function Login() {
                 <input 
                     type='text'
                     id='username'
+                    name='username'
                     onChange={handleChange}
                     value={form.username}
                 />
