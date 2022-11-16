@@ -1,15 +1,15 @@
 import React from 'react'
 import Portfolio from '../components/Portfolio'
-import { useState, useEffect } from 'react'
-
-function Profile ({ username, email }) {
 
 
+function Profile ({ username, usd }) {
+
+  console.log(usd)
 
   return (
     <div>
       <h1>Hello {username[0].toUpperCase() + username.substring(1)}</h1>
-      <h2>you have one bitcoin or {'funds'} to invest</h2>
+      <h2>you have one bitcoin or ${usd} to invest</h2>
       <Portfolio/>
     </div>
   )

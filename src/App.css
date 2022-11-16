@@ -13,7 +13,7 @@
 
 .heading {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     background-color: rgb(27, 94, 28);
     box-shadow: 0px 0px 12px rgb(130, 181, 135);
@@ -113,4 +113,40 @@ LineChart {
 select {
     margin-left: .5rem;
     width: 4rem
+}
+
+
+.trending-heading {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(27, 94, 28);
+    box-shadow: 0px 0px 12px rgb(130, 181, 135);
+    margin: 2rem 1rem;
+    padding: .7rem 1rem;
+    font-weight: 700;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(27, 94, 28);
+    box-shadow: 0px 0px 12px rgb(130, 181, 135);
+    margin: 2rem 1rem;
+    padding: .7rem 1rem;
+    font-weight: 700;
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(27, 94, 28);
+    box-shadow: 0px 0px 12px rgb(130, 181, 135);
+    margin: 2rem 1rem;
+    padding: .7rem 1rem;
+    font-weight: 700;
 }

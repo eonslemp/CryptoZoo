@@ -1,20 +1,45 @@
 import React from 'react'
-import { useState,  } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
 function Register({ setUser }) {
+    let [funds, setFunds] = useState()
     let [form, setForm] = useState({
         username: '',
+        usd: '',
         email: '',
         password: ''
     })
 
+    const url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
+
+
+    const getFunds = async () => {
+        try {
+        const response = await fetch(url)
+        console.log(response)
+        const data = await response.json()
+        console.log(data)
+        setFunds(data.bitcoin.usd)
+        // console.log(funds)
+    } catch(e) {
+        console.log('no data')
+        console.log(e)
+    } 
+    }
+
+    useEffect(() => {
+        getFunds()
+      }, [])
+
+    console.log(funds)
+
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        setForm({...form, [e.target.name]: e.target.value })
+        setForm({...form, usd: funds, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
@@ -43,7 +68,7 @@ function Register({ setUser }) {
     }
 
   return (
-    <div>
+    <div className='register-container'>
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor='username'>User Name</label>
@@ -83,3 +108,4 @@ function Register({ setUser }) {
 }
 
 export default Register
+

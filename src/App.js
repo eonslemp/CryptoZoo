@@ -5,7 +5,6 @@ import Trending from './Pages/Trending';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 import Coin from './components/Coin'
-import Converter from './Pages/Converter';
 import Profile from './Pages/Profile'
 import Register from './Pages/Register'
 import Login from './Pages/Login';
@@ -56,7 +55,7 @@ function App() {
 
   console.log(trendingCoins)
   let homeRoutes;
-
+  console.log(user.usd)
   if (user.username) {
     homeRoutes = (
       <Routes>
@@ -65,7 +64,7 @@ function App() {
         <Route path='/profile' element={
             <Profile 
               username={user.username} 
-              email={user.email}
+              usd={user.usd}
               />}
             />
         {/* <Route path='/converter' element={<Converter />}/> */}

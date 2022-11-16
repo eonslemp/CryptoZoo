@@ -7,7 +7,9 @@ const info = async (req, res)=>{
 
         res.status(200).json({ 
             username: foundUser.username, 
-            email: foundUser.email 
+            email: foundUser.email,
+            usd: foundUser.usd
+
         })
 
     }catch(error){
