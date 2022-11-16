@@ -9,7 +9,7 @@ function CrpytoInput(props) {
   return (
     <div>
        
-        {/* <input type='number' className="input" value={amount} onChange={changeAmount}/>
+        <input type='number' className="input" value={amount} onChange={changeAmount}/>
         <select value={selectedCurrency} onChange={changeCurrency}>
             {symbols.map(option => {
                 return (
@@ -18,7 +18,7 @@ function CrpytoInput(props) {
                 
             }
             
-        </select> */}
+        </select>
     </div>
   )
 }

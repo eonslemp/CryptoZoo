@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import '../App.css'
-import Graph from '../components/Graph'
+import Graph from './Graph'
+import axios from 'axios'
 // import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const Coin = () => {
@@ -15,16 +16,7 @@ const [ graphInfo, setGraphInfo] = useState([])
 
 const url = `https://api.coingecko.com/api/v3/coins/${params.coinid}`
 
-// console.log(params)
-// console.log(params.coinid)
-// const getCoin = async () => {
-//     try{
-//     const response = await fetch(url)
-//     const data = await response.json()
-//     setCoin(data)
-//     } catch(err) {console.log(err)
-//     }
-// }
+
 const getCoin = async () => {
     try {
     const response = await fetch(url)
@@ -42,7 +34,7 @@ const histURL = `https://api.coingecko.com/api/v3/coins/${params.coinid}/market_
 
 const getData = async () => {
     try{
-        console.log('running')
+        // console.log('running')
         const response = await fetch(histURL)
         const histData = await response.json()
         setGraph(histData)
@@ -56,7 +48,7 @@ const getData = async () => {
           }
       })
       setGraphInfo(graphData)
-      console.log(graphData)
+      // console.log(graphData)
 
     } catch(e) {
         console.log(e)

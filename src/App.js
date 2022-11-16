@@ -1,10 +1,10 @@
 import React , { useState, useEffect } from 'react'
-import Coins from './components/Coins'
+import Coins from './Pages/Coins'
 import Navbar from './components/Navbar'
 import Trending from './Pages/Trending';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import Coin from './Pages/Coin'
+import Coin from './components/Coin'
 import Converter from './Pages/Converter';
 import Profile from './Pages/Profile'
 import Register from './Pages/Register'
@@ -12,7 +12,7 @@ import Login from './Pages/Login';
 
 
 function App() {
-  const [user, setUser ] = useState(true)
+  const [user, setUser ] = useState({})
   const [coins, setCoins ] = useState([])
   const [trending, setTrending] = useState([])
 
@@ -24,7 +24,7 @@ function App() {
     try {
     const response = await fetch(trending_url)
     const data = await response.json()
-    setTrending(data)
+    setTrending(data.coins)
     } catch (err) {
     console.log(err)
   }
@@ -45,41 +45,49 @@ function App() {
     
   }, [])
   
-  const trendingCoins = trending.coins
+  // const trendingCoins = trending.coins
+  const trendingCoins = trending.map(coin =>({
+    id: coin.item.id,
+    name: coin.item.name,
+    symbol: coin.item.symbol,
+    image: coin.item.large,
+    cap_rank: coin.item.market_cap_rank,
+  }))
+
   console.log(trendingCoins)
   let homeRoutes;
-  if (user) {
+
+  if (user.username) {
     homeRoutes = (
       <Routes>
         <Route path='/' element={<Coins  coins={coins}/>}/>
         <Route path='/coin/:coinid' element={<Coin />}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/converter' element={<Converter />}/>
+        <Route path='/profile' element={
+            <Profile 
+              username={user.username} 
+              email={user.email}
+              />}
+            />
+        {/* <Route path='/converter' element={<Converter />}/> */}
         <Route path='/trending' element={<Trending trending={trendingCoins}/>}/>
+        <Route path='/trending/coin/:coinid' element={<Coin />}/>
+
       </Routes>
     )
   } else {
     homeRoutes = (
       <Routes>
         <Route path="/" element={<Coins coins={coins}/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login setUser={setUser}/>} />
+        <Route path="/register" element={<Register setUser={setUser}/>} />
       </Routes>
     )
 }
   return (
 
     <div className="App">
-      <Navbar user={user} setUser={setUser}/>
+      <Navbar user={user.username} setUser={setUser}/>
         {homeRoutes}
-      {/* <Routes>
-        <Route path='/' element={<Coins  coins={coins}/>}/>
-        <Route path='/coin/:coinid' element={<Coin />}/>
-        <Route path='/converter' element={<Converter />}/>
-        <Route path='/trending' element={<Trending trending={trendingCoins}/>}/>
-        cd <Route path='/trending/'/>
-      </Routes> */}
-      
 
     </div>
   );

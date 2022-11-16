@@ -1,11 +1,17 @@
 import React from 'react'
 import '../App.css';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
+
 
 const Navbar = ({user, setUser}) => {
 
+  const navigate = useNavigate()
+
   const logout = () => {
-      setUser(false)
+      setUser({})
+      localStorage.removeItem('token')
+      navigate('/')
+
   }
 
   if (user){
@@ -21,11 +27,11 @@ const Navbar = ({user, setUser}) => {
               <h1>Profile</h1>
             </div>
           </Link>
-        <Link to="/converter">
+        {/* <Link to="/converter">
             <div>
               <h1>Converter</h1>
             </div>
-        </Link>
+        </Link> */}
         <Link to="/trending">
           <div>
             <h1>Trending</h1>
@@ -40,16 +46,22 @@ const Navbar = ({user, setUser}) => {
   )
   } else {
     return (
-      <div>
-        <div>
-        <Link to='/'>Home</Link>
-        </div>
-        <div>
-        <Link to='/login'>Login</Link>
-        </div>
-        <div>
-          <Link to='/register'>Register</Link>
-        </div>
+      <div className='navbar'>
+        <Link to='/'>
+          <div>
+            <h1>Home</h1>
+          </div>
+        </Link>
+        <Link to='/login'>
+          <div>
+            <h1>Login</h1>
+          </div>
+        </Link>
+        <Link to='/register'>
+          <div>
+            <h1>Register</h1>
+          </div>
+        </Link>
       </div>
     )
   }

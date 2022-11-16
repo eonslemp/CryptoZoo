@@ -1,10 +1,11 @@
 import React from 'react'
-import CoinItem from './Coinitem'
+import CoinItem from '../components/Coinitem'
 import '../App.css';
 import { Link } from 'react-router-dom'
-import Coin from '../Pages/Coin'
+import Coin from '../components/Coin'
 
 const Coins = (props) => {
+    const coins = props.coins
   return (
     <div container='container'>
         <div>
@@ -18,11 +19,11 @@ const Coins = (props) => {
                 <p>Market Cap</p>
             </div>
 
-            {/* {console.log(props.coins)} */}
-            {props.coins.map(coins =>{
+            {console.log(coins)}
+            {coins.map(coin =>{
                 return(
-                    <Link to={`/coin/${coins.id}`} element={<Coin />} key={coins.id}>
-                        <CoinItem coins={coins} />
+                    <Link to={`/coin/${coin.id}`} element={<Coin />} key={coin.id}>
+                        <CoinItem coin={coin} />
                     </Link>
                 )
             })}

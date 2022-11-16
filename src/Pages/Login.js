@@ -1,7 +1,10 @@
-import React from 'react'
 import { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-function Login() {
+function Login({ setUser }) {
+
+    const navigate = useNavigate()
 
     let [form, setForm ] = useState({
         username: '',
@@ -14,8 +17,28 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(form)
+        // console.log(form)
         alert('form submitted')
+
+        try{
+
+        const response = await axios.post('http://localhost:9000/auth/login', form)
+        
+        const info = await axios.get('http://localhost:9000/users/info/' + form.username, {
+            headers:  {
+                'Authorization': `Bearer ${response.data.token}`
+            }
+        })
+
+        localStorage.setItem('token', response.data.token)
+        setUser(info.data)
+        navigate('/profile')
+
+        } catch(error){
+            console.log(error.response.data.error)
+            alert(error.response.data.error)
+        }
+
     }
   return (
     <div>

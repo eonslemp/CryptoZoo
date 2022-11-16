@@ -1,8 +1,8 @@
 import React from 'react'
-import CoinItem from '../components/Coinitem'
 import '../App.css';
 import { Link } from 'react-router-dom'
-import Coin from './Coin'
+import TrendingCoins from '../components/TrendingCoins'
+import TrendingCoinItem from '../components/TrendingCoinIitem'
 
 const Trending = (props) => {
     const trending = props.trending
@@ -12,20 +12,19 @@ const Trending = (props) => {
     <div>
         <h1>Top 7 Currencies Trending on Coin Gecko</h1>
         <div className='heading'>
-            <p>Rank</p>
-            <p className='coin-name'>Coin</p>
-            <p>Price</p>
-            <p>24h</p>
-            <p>Volume</p>
-            <p>Market Cap</p>
+            <h2 className='coin-name'>Image/Symbol</h2>
+            <h2>Coin Id</h2>
+            <h2>Market Cap Rank</h2>
+            {/* <p>Rank</p> */}
+            
         </div>
 
       
-        {trending.map(coins =>{
+        {trending.map(coin =>{
             return(
-                // <Link to={`/coin/${coins.id}`} element={<Coin />} key={coins.id}>
-                    <CoinItem key={coins.id} coins={coins} />
-                // </Link>
+                <Link to={`/coin/${coin.id}`} element={<TrendingCoins />} key={coin.id}>
+                    <TrendingCoinItem  coin={coin} />
+                </Link>
             )
         })}
 

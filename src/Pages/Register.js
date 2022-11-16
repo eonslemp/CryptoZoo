@@ -1,14 +1,17 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,  } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
-function Register() {
+function Register({ setUser }) {
     let [form, setForm] = useState({
         username: '',
         email: '',
         password: ''
     })
+
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setForm({...form, [e.target.name]: e.target.value })
@@ -19,8 +22,23 @@ function Register() {
         console.log(form)
         alert('Registered')
 
-        const response = await axios.post('http://localhost:9000/register', form)
-        console.log(response)
+        try{
+            const response = await axios.post('http://localhost:9000/auth/register', form)
+
+            const info = await axios.get('http://localhost:9000/users/info/' + form.username,{
+                headers: {
+                    'Authorization': `Bearer ${response.data.token}`
+                }
+            })
+    
+            localStorage.setItem('token', response.data.token)
+            setUser(info.data)
+            navigate('/')
+    
+            } catch(error){
+                console.log(error.response.data.error)
+                alert(error.response.data.error)
+            }
 
     }
 
