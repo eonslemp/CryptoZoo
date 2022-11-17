@@ -7,7 +7,6 @@ import Buy from '../Pages/Buy'
 
 
 function Profile ({ username, usd, menuArray }) {
-  
 //   const [state, setState] = useState()
     
 //   const [list, setList] = useState()
@@ -46,13 +45,13 @@ console.log(menuArray)
     <div>
       <h1>Hello {username[0].toUpperCase() + username.substring(1)}</h1>
       <h2>you have one bitcoin or ${usd} to invest</h2>
-      <Portfolio/>
+      <Portfolio />
       <h1>Available Coins</h1>
       <div className='menu-container'>
 
         {menuArray?.map(coin => {
           return(
-          <Link to={`/profile/buy/${coin.id}`} element={<Buy coin={coin}/>} key={coin.id}>
+          <Link to={`/profile/buy/${coin.id}`} element={<Buy coin={coin} username={username}/>} key={coin.id}>
               <div className='coin-item'>
                 <p>{coin.id}</p>
                 <img src={coin.image} alt='no symbol available'/>

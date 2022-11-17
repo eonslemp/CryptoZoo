@@ -105,7 +105,7 @@ function App() {
               menuArray={menuArray}
               />}
             />
-        <Route path='/profile/buy/:coinid' element={<Buy/>}/>
+        <Route path='/profile/buy/:coinid' element={<Buy username={user.username} />}/>
         <Route path='/trending' element={<Trending trending={trendingCoins}/>}/>
         <Route path='/trending/coin/:coinid' element={<Coin />}/>
 

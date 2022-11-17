@@ -1,14 +1,18 @@
 import React from 'react'
 import Graph from '../components/Graph'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react' 
+import axios from 'axios'
 
-const Buy = () => {
+const Buy = ({ username }) => {
+    // const username = props.username
+    console.log(username)
     const params = useParams()
 
     const [ coin, setCoin ] = useState({})
     const [ graph, setGraph] = useState({})
     const [ graphInfo, setGraphInfo] = useState([])
+    let quantityRef = useRef()
 // console.log(coin)
 
     const url = `https://api.coingecko.com/api/v3/coins/${params.coinid}`
@@ -59,11 +63,23 @@ useEffect(() => {
     getCoin()
   }, [])
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    let buyCrypto = {
+        quantity: quantityRef.current.value,
+        username
+    }
+    axios.post('')
+  }
+
   return (
     <div className='show'>
-        <div>
+        <form className='buy' onSubmit={handleSubmit}>
              <h1>{coin.name}</h1>
-        </div>
+             <input type='number' ref={quantityRef}></input>
+             <br />
+             <button>Buy Crypto</button>
+        </form>
         <div className='coin-display'>
             <h1 className='rank'>Rank:  {coin.market_cap_rank}</h1>
             {coin.image ? <img src={coin.image.small} alt=''/> : null}

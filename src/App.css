@@ -182,3 +182,11 @@ select {
     padding: 1rem;
     font-weight: 700;
 }
+
+.buy {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-weight: 800;
+    width: auto;
+}
