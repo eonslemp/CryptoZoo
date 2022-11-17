@@ -8,6 +8,7 @@ import Coin from './components/Coin'
 import Profile from './Pages/Profile'
 import Register from './Pages/Register'
 import Login from './Pages/Login';
+import Buy from './Pages/Buy'
 
 
 function App() {
@@ -53,7 +54,42 @@ function App() {
     cap_rank: coin.item.market_cap_rank,
   }))
 
-  console.log(trendingCoins)
+
+  const [state, setState] = useState()
+    
+  const [list, setList] = useState()
+
+// console.log(usd)
+  const menuUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+
+
+  const getList = async () => {
+    try {
+    const response = await fetch(menuUrl)
+    console.log(response)
+    const data = await response.json()
+    console.log(data)
+    setList(data)
+
+    } catch(e) {
+    console.log('no data')
+    console.log(e)
+    } 
+  }
+  useEffect(() => {
+    getList()
+  }, [])
+  console.log(list)
+  const menuArray = list?.map(coin => ({
+    id: coin.id,
+    image: coin.image,
+    symbol: coin.symbol
+  }))
+
+  console.log(menuArray)
+
+
+  // console.log(trendingCoins)
   let homeRoutes;
   console.log(user.usd)
   if (user.username) {
@@ -61,13 +97,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Coins  coins={coins}/>}/>
         <Route path='/coin/:coinid' element={<Coin />}/>
+        
         <Route path='/profile' element={
             <Profile 
               username={user.username} 
               usd={user.usd}
+              menuArray={menuArray}
               />}
             />
-        {/* <Route path='/converter' element={<Converter />}/> */}
+        <Route path='/profile/buy/:coinid' element={<Buy/>}/>
         <Route path='/trending' element={<Trending trending={trendingCoins}/>}/>
         <Route path='/trending/coin/:coinid' element={<Coin />}/>
 

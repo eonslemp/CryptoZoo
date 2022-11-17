@@ -10,7 +10,7 @@ const Trending = (props) => {
       return (
     <div container='container'>
     <div>
-        <h1>Top 7 Currencies Trending on Coin Gecko</h1>
+        <h1>Top Cryptocurrencies Trending on Coin Gecko</h1>
         <div className='trending-heading'>
             <h2 className='coin-name'>Image/Symbol</h2>
             <h2>Coin Id</h2>
